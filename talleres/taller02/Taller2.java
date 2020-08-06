@@ -1,4 +1,4 @@
-public class Taller2{
+public class AlgoritmoEuclides{
 
        public static int gcd(int p, int q){
             if(q==0){
