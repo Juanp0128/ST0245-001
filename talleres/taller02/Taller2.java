@@ -6,8 +6,7 @@ public class Taller2{
               }
             else {
                gcd(q, p%q);
-              }
-            
+              }    
        }
 
 }
