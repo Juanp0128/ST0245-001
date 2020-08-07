@@ -6,7 +6,7 @@ public class AlgoritmoEuclides{
               }
             else {
                gcd(q, p%q);
-              }    
+              }
        }
 
 }
