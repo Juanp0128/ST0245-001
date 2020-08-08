@@ -13,19 +13,6 @@
         return existe(0, nums, target);
     }
 
-
-    public static boolean existe(int start, int[] nums, int target) {
-        if (target == 0)
-            return true;
-        else {
-            boolean loLlevo = existe(start + 1, nums, target - nums[start]);
-            boolean noLoLlevo = existe(start + 1, nums, target);
-            boolean loLlevoONoLoLlevo = noLlevo || loLlevo;
-            return loLlevoONoLoLlevo;
-        }
-    }
-
-
     public static void combinations(String s) {
 
         combinationsAux("", s);
