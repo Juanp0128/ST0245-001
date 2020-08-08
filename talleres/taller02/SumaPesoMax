@@ -1,0 +1,22 @@
+public static boolean existe(int[] nums, int target){
+         return existe(0, nums, target);
+        }
+
+     public static boolean existe(int start, int[] nums, int target){
+       boolean loLlevo = false;
+       boolean noLoLlevo = false;
+       boolean loLlevoONoLoLlevo = false;
+       int startF = nums.length;
+         if (target==0) {
+          return true;
+         }
+         else{
+            if(target>=0){
+               loLlevo = existe(start+1,nums,target-nums[start]);
+               noLoLlevo = existe(start+1,nums,target-nums[startF-1]);
+               loLlevoONoLoLlevo = noLoLlevo || loLlevo;
+               } 
+ 
+           return loLlevoONoLoLlevo;
+         }
+}
