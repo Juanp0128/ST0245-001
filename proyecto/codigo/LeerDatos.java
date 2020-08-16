@@ -21,7 +21,7 @@ public class LeerCSV
       
       try {
          
-         br =new BufferedReader(new FileReader("C:\\Users\\Usuario\\Desktop\\DIEGO\\Universidad\\Estructuras de Datos y Algoritmos\\Proyecto\\Bases de datos\\0_test_balanced_5000.csv"));
+         br =new BufferedReader(new FileReader(//Ruta del archivo));
          String line = br.readLine();
          while (null!=line) {
             String [] campos = line.split(PuntoYComa);
