@@ -25,11 +25,8 @@ public class LeerCSV
          String line = br.readLine();
          while (null!=line) {
             String [] campos = line.split(PuntoYComa);
-            System.out.println(Arrays.toString(campos));
-            
             campos = removeTrailingQuotes(campos);
-            System.out.println(Arrays.toString(campos));
-            
+            //Si queremos mostrar los archivos leídos agregar: System.out.println(Arrays.toString(campos));           
             line = br.readLine();
          }
          
