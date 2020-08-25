@@ -1,3 +1,4 @@
+@Author Juan Pablo Henao, Diego Alejandro Vanegas
 public class noX
 {
     public String noX(String str) {
