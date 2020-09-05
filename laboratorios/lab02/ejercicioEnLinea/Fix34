@@ -1,0 +1,22 @@
+public class Fix34
+{
+    public int[] fix34(int[] nums) {
+  int temp;
+  int n = 0;
+  for(int i = 0; i<nums.length;i++){
+    if(nums[i]==3){
+      temp = nums[i+1];
+      for(int j = n; j<nums.length;j++){
+        if(nums[j]==4){
+          nums[j]=temp;
+          n = j+1;
+          j=nums.length;
+        }
+      }
+      nums[i+1]=4;
+    }
+  }
+  return nums;
+}
+
+}
