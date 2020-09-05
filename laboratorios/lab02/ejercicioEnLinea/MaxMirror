@@ -1,0 +1,22 @@
+public class MaxMirror
+{
+    public int maxMirror(int[] nums) {
+  int longi = nums.length, cont = 0, max = 0;
+  for(int i = 0; i<longi; i++){
+    cont=0;
+    for(int j = longi-1; j > -1 && i+cont < longi; j--){
+      if(nums[i+cont] == nums[j]){
+        cont++;
+      } else {
+        if(cont>0){
+          max= Math.max(cont,max);
+          cont = 0;
+        }
+      }
+    }
+    max = Math.max(cont,max);
+  }
+  return max;
+}
+
+}
