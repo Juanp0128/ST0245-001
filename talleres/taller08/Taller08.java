@@ -15,7 +15,7 @@ import java.util.*;
                     stack.push(stack.pop()*stack.pop());
                 }
                 else if(prefixStr[i].equals("-")){
-                    stack.push( stack.pop()-stack.pop());
+                    stack.push(-1*stack.pop()+stack.pop());
                 }
                 else if(prefixStr[i].equals("/")){
                     stack.push(stack.pop() / stack.pop());
@@ -39,4 +39,16 @@ import java.util.*;
                 temp.push(stack.size());
             return temp;
         }
+        
+        /**
+         * @param queue es una cola ya implementada que se crea en el test
+         * Este método se encarga de atender a personas.
+         * Nota: Se debe imprimir en consola a quién atiende y sacarlo de la cola
+         * existe una función "pull" que hace el trabajo más fácil
+         * 
+         */
+        public static void cola(Queue<String> queue){
+          while(queue.peek()!= null)    
+            System.out.println("Atendiendo a " + queue.poll());
+       }
     }
