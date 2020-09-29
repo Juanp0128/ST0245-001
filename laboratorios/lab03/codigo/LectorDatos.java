@@ -13,7 +13,7 @@ public class LectorDatos {
     public HashMap<Long, Node> readNodes() {
         HashMap<Long, Node> nodes = new HashMap<>();
         try{
-            FileReader f  = new FileReader("Vertices.txt");
+            FileReader f  = new FileReader("Medallo.txt");
             BufferedReader b = new BufferedReader(f);
             String line;
             int lineCount = 0;
