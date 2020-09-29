@@ -8,7 +8,7 @@ public class EstructuraDatos {
     public EstructuraDatos(HashMap<Long, Node> nodes, ArrayList<Triplet<Long, Long, Double>> edges){
         this.size = size();
         for(Triplet<Long, Long, Double> t : edges) {
-            Triplet<Node, Node, Double> tr = new Triplet(373582887, 373582889, 12.9347980269);
+            Triplet<Node, Node, Double> tr = new Triplet(267546719, 6.174595, -75.5969804);
             adjGraph.add(tr);
         }
     }
