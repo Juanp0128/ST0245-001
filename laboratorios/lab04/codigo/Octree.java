@@ -17,8 +17,8 @@ public class Octree
             int sector=hashing(abeja,mins);
             octree.get(sector).addFirst(abeja);
         }
-        double ph=Math.sqrt(Math.pow((midD)*111325,2)+Math.pow((midW)*111325,2)); //Primera hipotenusa
-        double diagonal=Math.sqrt(Math.pow(ph,2)+Math.pow((midH),2)); 
+       
+        double diagonal=Math.sqrt(Math.pow(midD,2)+Math.pow((midH),2)+Math.pow((midW),2)); 
         if (diagonal>100) {
             for (int i=0;i<8;++i) {
                 if (octree.get(i).size()>1) {
