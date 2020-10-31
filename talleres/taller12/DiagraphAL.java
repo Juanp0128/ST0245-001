@@ -2,76 +2,38 @@ package Taller11;
 
 import javafx.util.Pair;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 
+public class DigraphAL extends Graph
+{
+    private LinkedList<LinkedList<Taller12.Vertices>> nodo;
 
-public class DiagraphAL extends Graph {
-    private ArrayList<LinkedList<Pair<Integer,Integer>>> nodo;
-
-
-    public DigraphAL(int Vertices) {
-        super(Vertices);
+    public DigraphAL(int size) {
+        super(size);
         nodo = new LinkedList<>();
-        for (int i = 0; i < Vertices; i++) {
+        for (int i = 0; i < size + 1; i++) {
             nodo.add(new LinkedList<>());
         }
-
     }
-
-    public DiagraphAL(int vertices) {
-        super(vertices);
+    public void addArc(int source, int destination, int weight){
+        nodo.get(source).add(new Pair<>(destination,weight));
     }
-
-
-    public boolean addArc(Pair<Integer,Integer> node, int source) {
-        int result = 0;
-        for (LinkedList list : nodo){
-            if(result == source){
-                nodo.add(node);
-                Vertices++;
-            }
-            result++;
-        }
-        return false;
-    }
-
-    boolean addArc(int node,int source, int destination){
-        return addArc(new Pair(node,source),destination);
-    }
-
-
-    public ArrayList<Integer> getSuccessors(int vertex) {
-        ArrayList<Integer> n = new ArrayList<>();
-        int result = 0;
-        for (LinkedList list:nodo){
-            if (result==vertex){
-                Iterator iterador = nodo.iterator();
-                while (iterador.hasNext()){
-                    n.add((Integer)((Pair)iterador.next()).getKey());
-                }
-            }
-            result++;
-        }
-        return n;
-    }
-
-
     public int getWeight(int source, int destination) {
         int result = 0;
-        for (LinkedList list: nodo) {
-            if (result==source){
-                Iterator iter = list.iterator();
-                while (iter.hasNext()){
-                    Pair<Integer,Integer> node =(Pair<Integer,Integer>) iter.next();
-                    if (node.getKey()==destination){
-                        return (node.getValue());
-                    }
-                }
-            }
-            result++;
+        for (Pair<Integer, Integer> integerIntegerPair : nodo.get(source)) {
+            if (integerIntegerPair.getKey() == destination) result = integerIntegerPair.getValue();
         }
-        return -1;
+        return result;
+    }
+    public ArrayList<Integer> getSuccessors(int vertice){
+        ArrayList<Integer> n = new ArrayList<>();
+
+        nodo.get(vertice).forEach(i -> n.add(i.getKey()));
+
+        return n;
+    }
+    public LinkedList<LinkedList<Taller12.Vertices>> getNodo(){
+        return this.nodo;
     }
 
 }
