@@ -13,29 +13,29 @@ public class LeerCSV {
         ArrayList<String[]> cargar = new ArrayList<>();
   /*      try {
             BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream("C:\\Users\\juanp\\IdeaProjects\\ProyectoDatos1\\"+dir), "utf-8"));
-            String linea;
-            int indiceFilas = 0;
+            String linee;
+            int IFiles = 0;
             while ((linea = in.readLine()) != null) {
-                String partesLinea[] = linea.split(";");
-                if (indiceFilas != 0) {
+                String PLinee[] = linee.split(";");
+                if (IFiles != 0) {
                     String columns[] = new String[31];
-                    int indiceColumnas = 0;
-                    for (int i = 0; i < partesLinea.length; i++) {
+                    int IColumns = 0;
+                    for (int i = 0; i < PLinee.length; i++) {
                         if (comprobarVariable(i)) {
                             if ((i > 64 && i < 73))
-                                columns[indiceColumnas] = verificarNota(partesLinea[i]);
-                            else if (partesLinea[i].isEmpty())
-                                columns[indiceColumnas] = "*";
+                                columns[IColumns] = Nota(PLinee[i]);
+                            else if (PLinee[i].isEmpty())
+                                columns[IColumns] = "*";
                             else
-                                columns[indiceColumnas] = partesLinea[i];
-                            indiceColumnas++;
+                                columns[IColumns] = PLinee[i];
+                            IColumns++;
                         }
                     }
                     cargar.add(columns);
                 } else {
-                    cargar.add(partesLinea);
+                    cargar.add(PLinee);
                 }
-                indiceFilas++;
+                IFiles++;
             }
         } catch (Exception e) {
             System.out.println(e);
