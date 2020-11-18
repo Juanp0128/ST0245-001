@@ -1,5 +1,7 @@
 package Proyectoo;
+
 import java.util.TreeSet;
+
 //Juan Pablo Henao, Diego Vanegas
 public class Gini {
     private String variable;
@@ -9,15 +11,17 @@ public class Gini {
     private int noNode1;
     private int noNode0;
     private float index;
+    private int aux;
 
-    public Gini(String variable, String value) {
+    public Gini(String variable, String value,int aux) {
         this.variable = variable;
         this.value = value;
         this.yesNode1 = 0;
         this.yesNode0 = 0;
         this.noNode1 = 0;
         this.noNode0 = 0;
-        this.index = 5000;
+        this.index = 9999999;
+        this.aux = aux;
     }
 
     public String getVariable() {
@@ -26,6 +30,9 @@ public class Gini {
 
     public String getValue() {
         return value;
+    }
+    public int getAux(){
+        return this.aux;
     }
 
     public void getYesNode1() {
@@ -47,6 +54,10 @@ public class Gini {
     public void impurezaGini() {
         float allyes = yesNode0 + yesNode1;
         float allno = noNode0 + noNode1;
+        if (allyes==0||allno==0){
+            this.index=0;
+            return;
+        }
         float V0yes, V1yes, V0no, V1no, ginisi, ginino, giniV;
 
         V0yes = yesNode0 / allyes;
@@ -58,10 +69,10 @@ public class Gini {
         giniV = ((allno * ginino) + (allyes * ginisi)) / (allno + allyes);
         this.index = giniV;
 
-        System.out.println(variable + "=" + value + "Impureza Gini: " + giniV);
+       // System.out.println(variable + "=" + value + "Impureza Gini: " + giniV);
     }
 
-    public static TreeSet<String> valueSet(String[][] matrix, int pos) {
+   public static TreeSet<String> valueSet(String[][] matrix, int pos) {
         TreeSet<String> values = new TreeSet<String>();
         for (int i = 0; i < matrix.length; i++) {
             values.add(matrix[i][pos]);
@@ -138,8 +149,8 @@ public class Gini {
         return true;
     }
 
-    public float getIndex() {
-        return index;
+   public float getIndex() {
+        return this.index;
     }
 }
 
