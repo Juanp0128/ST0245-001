@@ -11,17 +11,17 @@ public class LeerCSV {
 
     private static ArrayList<String[]> cargarCSV(String dir) {
         ArrayList<String[]> cargar = new ArrayList<>();
-  /*      try {
+    /*  try {
             BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream("C:\\Users\\juanp\\IdeaProjects\\ProyectoDatos1\\"+dir), "utf-8"));
             String linee;
             int IFiles = 0;
-            while ((linea = in.readLine()) != null) {
+            while ((linee = in.readLine()) != null) {
                 String PLinee[] = linee.split(";");
                 if (IFiles != 0) {
                     String columns[] = new String[31];
                     int IColumns = 0;
                     for (int i = 0; i < PLinee.length; i++) {
-                        if (comprobarVariable(i)) {
+                        if (proveV(i)) {
                             if ((i > 64 && i < 73))
                                 columns[IColumns] = Nota(PLinee[i]);
                             else if (PLinee[i].isEmpty())
@@ -44,7 +44,7 @@ public class LeerCSV {
     }*/
 
 
-        BufferedReader br = null;
+       BufferedReader br = null;
 
         try {
             br = new BufferedReader(new FileReader(Doc));
@@ -92,20 +92,21 @@ public class LeerCSV {
         Tree[] trees = new Tree[30];
         int x=0;
         for (int i=0;i<lines.length;i++){
-            if (i!=lines.length-1&&comprobarVariable(i)){
+            if (i!=lines.length-1&&proveV(i)){
                 trees[x]= new Tree(lines[i],x);
                 x++;
             }
         }
         return trees;
     }
+    //Inicializa todos los metodos 
     public static Roots start(String dir) {
         ArrayList<String[]>data= cargarCSV(dir);
         Tree trees[] = AddTreesV(data);
         HashSet<String> alreadyV = new HashSet<>();
         govalues(data,alreadyV,trees);
-        bestGini(trees);
         counting(data,alreadyV,trees);
+        bestGini(trees);
         Gini gini = bestGini(trees);
         Roots roots = new Roots();
         roots.root=new Node(gini);
@@ -115,7 +116,7 @@ public class LeerCSV {
 
 
     }
-
+    
     private static boolean govalues(ArrayList<String[]>data, HashSet<String>valued,Tree[]trees){
         int temp=0;
         for (String[]h:data){
@@ -137,15 +138,16 @@ public class LeerCSV {
         }
         return true;
     }
+    //Permite Crear un nuevo arbol
     public static void newTree(ArrayList<String[]>data, HashSet<String> alreadyV,Node node, Tree[] trees) {
-        final int TotalValues = 200;
+        final int TotalValues = 198;
         ArrayList<String[]> Yes = new ArrayList<>();
         ArrayList<String[]> No = new ArrayList<>();
 
-        for (String [] files : data) {
-            if (files[node.gini.getAux()].equals(node.gini.getValue())) Yes.add(files);
-             else No.add(files);
-        }
+        for (String [] files : data)
+            if (files[node.gini.getAux()].equals(node.gini.getValue()))
+                Yes.add(files);
+            else No.add(files);
         if (No.size() < 10) {
             int aux = Biggest(No);
             if (aux == 1) node.left = new Node(new Gini("1", "Center", -1));
@@ -219,6 +221,7 @@ public class LeerCSV {
         }
 
     }
+    //Comprueba su los datos son iguales
     public static boolean same(ArrayList<String[]>data){
         String i=data.get(0)[30];
         for (String[]files:data){
@@ -228,6 +231,7 @@ public class LeerCSV {
         return true;
     }
 
+//Halla la mejor impureza
     private static Gini bestGini(Tree[] trees){
         Gini value = new Gini("","",-1);
         for (Tree tri:trees){
@@ -240,7 +244,7 @@ public class LeerCSV {
         }
         return value;
     }
-
+// Ejecuta el test
     public static double[] executable(String dir,Roots roots) {
         ArrayList<String[]>data = cargarCSV(dir);
         int Perfect = 0;
@@ -257,6 +261,7 @@ public class LeerCSV {
         return percents;
         }
 
+// Analiza cual valor se repite mas
     public static int Biggest(ArrayList<String []>data){
         int B1 = 0;
         int B2 = 0;
@@ -271,7 +276,7 @@ public class LeerCSV {
         else
             return 0;
     }
-
+//Hace un conteo de ginis
     private static void counting(ArrayList<String[]>data, HashSet<String>alreadyV,Tree[]trees){
         int x = 0;
         for (String[] file: data){
@@ -301,7 +306,7 @@ public class LeerCSV {
             }x++;
         }
     }
-
+//Recorre el arbol
     public static String completed(String[]file,Node node){
     if (node.gini.getVariable().equals("Center"))return node.gini.getValue();
     if (file[node.gini.getAux()].equals(node.gini.getValue())){
@@ -310,7 +315,7 @@ public class LeerCSV {
         return completed(file,node.left);
         }
     }
-
+    //Calcula la impureza del arbol
     private static void calculateG(Tree[] trees){
         for (Tree tri:trees){
             for (Gini gini: tri.getAllvariables()){
@@ -319,3 +324,4 @@ public class LeerCSV {
         }
     }
 }
+
